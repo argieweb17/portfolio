@@ -2,8 +2,6 @@
 
 {% block title %}Portfolio{% endblock %}
 
-{% block javascripts %}{% endblock %}
-
 {% block stylesheets %}
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap');
@@ -145,6 +143,20 @@
 		.social-links .icon-at {
 			line-height: 1;
 			transform: translateY(-1px);
+		}
+
+		.social-links .icon-fb {
+			width: 26px;
+			height: 26px;
+			display: grid;
+			place-items: center;
+			border-radius: 50%;
+			background: #111111;
+			color: #ffffff;
+			font-size: 1.05rem;
+			font-weight: 800;
+			line-height: 1;
+			font-family: Arial, sans-serif;
 		}
 
 		.social-links a:hover {
@@ -295,7 +307,7 @@
 				<p class="role">Full Stack Web Developer | Graphic Desinger</p>
 
 				<div class="social-links">
-					<a href="mailto:hello@example.com" aria-label="Send email">
+					<a href="mailto:apagbunocan@gmail.com" aria-label="Send email">
 						<span class="icon-at">@</span>
 					</a>
 					<a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub">
@@ -308,6 +320,9 @@
 							<circle cx="12" cy="12" r="11" />
 							<path fill="#ffffff" d="M8.85 10.04h2.06v6.28H8.85v-6.28Zm1.03-3.22a1.2 1.2 0 1 1 0 2.4a1.2 1.2 0 0 1 0-2.4Zm2.31 3.22h1.98v.86h.03c.28-.53.95-1.08 1.95-1.08c2.08 0 2.47 1.37 2.47 3.15v3.35h-2.07v-2.97c0-.71-.01-1.62-.99-1.62c-.99 0-1.14.77-1.14 1.57v3.02h-2.07v-6.28Z"/>
 						</svg>
+					</a>
+					<a href="https://www.facebook.com/argiepairpagbunocan.17" target="_blank" rel="noreferrer" aria-label="Facebook">
+						<span class="icon-fb" aria-hidden="true">f</span>
 					</a>
 				</div>
 			</div>
