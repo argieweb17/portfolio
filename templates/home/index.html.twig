@@ -122,6 +122,16 @@
 			}
 		}
 
+		@keyframes binaryCascade {
+			0% {
+				transform: translateY(-110%);
+			}
+
+			100% {
+				transform: translateY(120%);
+			}
+		}
+
 		.social-links a {
 			width: 54px;
 			height: 54px;
@@ -190,6 +200,65 @@
 			transform: skewX(-11deg);
 			transform-origin: right top;
 			pointer-events: none;
+		}
+
+		.binary-rain {
+			position: absolute;
+			inset: 0;
+			overflow: hidden;
+			z-index: 1;
+			pointer-events: none;
+			display: grid;
+			grid-template-columns: repeat(16, minmax(0, 1fr));
+			padding: 0 10px;
+			opacity: 0.52;
+		}
+
+		.binary-stream {
+			align-self: start;
+			justify-self: center;
+			font-family: 'Courier New', Courier, monospace;
+			font-size: 0.68rem;
+			font-weight: 700;
+			line-height: 1;
+			letter-spacing: 1px;
+			writing-mode: vertical-rl;
+			text-orientation: upright;
+			white-space: nowrap;
+			color: rgba(120, 255, 120, 0.92);
+			text-shadow: 0 0 8px rgba(90, 255, 120, 0.36);
+			animation: binaryCascade 16s linear infinite;
+			transform: translateY(-110%);
+		}
+
+		.binary-stream:nth-child(2n) {
+			animation-duration: 19s;
+			animation-delay: -6s;
+			opacity: 0.75;
+		}
+
+		.binary-stream:nth-child(3n) {
+			animation-duration: 13s;
+			animation-delay: -10s;
+			opacity: 0.88;
+		}
+
+		.binary-stream:nth-child(4n) {
+			animation-duration: 17s;
+			animation-delay: -3s;
+			opacity: 0.65;
+		}
+
+		.binary-stream:nth-child(5n) {
+			animation-duration: 22s;
+			animation-delay: -13s;
+			opacity: 0.58;
+		}
+
+		.binary-stream:nth-child(6n) {
+			animation-duration: 11s;
+			animation-delay: -15s;
+			opacity: 0.92;
 		}
 
 		.top-nav {
@@ -674,6 +743,15 @@
 				gap: 24px 16px;
 			}
 
+			.binary-rain {
+				grid-template-columns: repeat(9, minmax(0, 1fr));
+				opacity: 0.34;
+			}
+
+			.binary-stream:nth-child(n + 10) {
+				display: none;
+			}
+
 			.contact-title {
 				padding: 10px 28px;
 				font-size: 0.92rem;
@@ -718,6 +796,12 @@
 				animation: none;
 				opacity: 1;
 			}
+
+			.binary-stream {
+				animation: none;
+				transform: translateY(0);
+				opacity: 0.36;
+			}
 		}
 	</style>
 {% endblock %}
@@ -725,7 +809,7 @@
 {% block body %}
 	<main class="portfolio-hero">
 		<section class="intro-pane">
-			<img class="brand-mark" src="{{ asset('images/app-logo.svg') }}?v=20260412" alt="APP logo" loading="eager" decoding="async">
+			<img class="brand-mark" src="{{ asset('images/app-logo.svg') }}?v=20260412b" alt="APP logo" loading="eager" decoding="async">
 
 			<div class="intro-copy">
 				<p class="lead">Hi, I am</p>
@@ -755,6 +839,29 @@
 		</section>
 
 		<section class="visual-pane">
+			<div class="binary-rain" aria-hidden="true">
+				<span class="binary-stream">0101101010010110100101010110010100101101010010110101011010010101</span>
+				<span class="binary-stream">1010010110101011001010110100101101010110010100101101010010110101</span>
+				<span class="binary-stream">0100101101010110010100101101010010110101011001010110100101101010</span>
+				<span class="binary-stream">1011010010110101011001010010110101001011010101100101011010010110</span>
+				<span class="binary-stream">0110010100101101010010110101011001010110100101101010110010101101</span>
+				<span class="binary-stream">1001011010101100101001011010100101101010110010101101001011010101</span>
+				<span class="binary-stream">0110100101101010110010101101001011010101100101001011010100101101</span>
+				<span class="binary-stream">1100101011010010110101011001010010110101001011010101100101011010</span>
+				<span class="binary-stream">0010110101011001010110100101101010110010101101001011010101100101</span>
+				<span class="binary-stream">0101011001010010110101001011010101100101011010010110101011001010</span>
+				<span class="binary-stream">1010101100101011010010110101011001010010110101001011010101100101</span>
+				<span class="binary-stream">0101100101011010010110101011001010110100101101010110010100101101</span>
+				<span class="binary-stream">0011010101100101011010010110101011001010110100101101010110010100</span>
+				<span class="binary-stream">1101010010110101011001010110100101101010110010101101001011010101</span>
+				<span class="binary-stream">0110010100101101010010110101011001010110100101101010110010101101</span>
+				<span class="binary-stream">1001011010101100101001011010100101101010110010101101001011010100</span>
+				<span class="binary-stream">0101101010010110100101010110010100101101010010110101011010010101</span>
+				<span class="binary-stream">1010010110101011001010110100101101010110010100101101010010110100</span>
+				<span class="binary-stream">0010110101011001010110100101101010110010101101001011010101100101</span>
+				<span class="binary-stream">0101011001010010110101001011010101100101011010010110101011001011</span>
+			</div>
+
 			<nav class="top-nav" aria-label="Primary">
 				<a id="about-link" href="#about">About me</a>
 				<a href="#skills">Skills</a>
