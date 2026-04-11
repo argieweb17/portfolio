@@ -6,12 +6,15 @@ RUN apk add --no-cache \
     icu-dev \
     libzip-dev \
     postgresql-dev \
+    sqlite-dev \
     unzip
 
 RUN docker-php-ext-install -j"$(nproc)" \
     intl \
     opcache \
+    pdo_mysql \
     pdo_pgsql \
+    pdo_sqlite \
     zip
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -23,6 +26,7 @@ COPY . .
 ENV APP_ENV=prod
 ENV APP_DEBUG=0
 ENV APP_SECRET=change-me-in-railway
+ENV DATABASE_URL=sqlite:///%kernel.project_dir%/var/data_prod.db
 
 RUN mkdir -p var/cache var/log var/share \
     && chmod -R 777 var
