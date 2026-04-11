@@ -22,6 +22,10 @@ COPY . .
 
 ENV APP_ENV=prod
 ENV APP_DEBUG=0
+ENV APP_SECRET=change-me-in-railway
+
+RUN mkdir -p var/cache var/log var/share \
+    && chmod -R 777 var
 
 RUN composer install \
     --no-dev \
@@ -32,4 +36,4 @@ RUN composer install \
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} -t public public/index.php"]
+CMD ["sh", "-c", "APP_ENV=prod APP_DEBUG=0 php -S 0.0.0.0:${PORT:-8000} -t public public/index.php"]
