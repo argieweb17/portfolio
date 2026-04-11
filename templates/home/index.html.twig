@@ -2,6 +2,8 @@
 
 {% block title %}Portfolio{% endblock %}
 
+{% block javascripts %}{% endblock %}
+
 {% block stylesheets %}
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap');
@@ -19,9 +21,14 @@
 			box-sizing: border-box;
 		}
 
+		html {
+			scroll-behavior: smooth;
+		}
+
 		body {
 			margin: 0;
 			min-height: 100vh;
+			overflow-x: hidden;
 			font-family: 'Space Grotesk', sans-serif;
 			background: var(--right-bg);
 			color: #ffffff;
@@ -31,7 +38,7 @@
 			min-height: 100vh;
 			display: grid;
 			grid-template-columns: minmax(360px, 53%) 1fr;
-			overflow: hidden;
+			overflow: visible;
 		}
 
 		.intro-pane {
@@ -45,13 +52,10 @@
 		}
 
 		.brand-mark {
-			font-size: 1.95rem;
-			font-weight: 800;
-			letter-spacing: -0.08em;
-			width: fit-content;
-			transform: skewX(-10deg);
-			border-bottom: 3px solid #111111;
-			padding-bottom: 2px;
+			width: clamp(180px, 22vw, 300px);
+			max-width: 100%;
+			height: auto;
+			display: block;
 		}
 
 		.intro-copy {
@@ -185,12 +189,13 @@
 			background: var(--right-bg);
 			transform: skewX(-11deg);
 			transform-origin: right top;
+			pointer-events: none;
 		}
 
 		.top-nav {
 			width: 100%;
 			position: relative;
-			z-index: 2;
+			z-index: 5;
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
@@ -234,6 +239,330 @@
 			filter: drop-shadow(0 20px 44px rgba(0, 0, 0, 0.45));
 		}
 
+		.about-section {
+			background: #dbdbdb;
+			color: #111111;
+			padding: 110px 24px 120px;
+			scroll-margin-top: 16px;
+		}
+
+		.about-wrap {
+			max-width: 920px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.about-title {
+			display: inline-block;
+			padding: 18px 46px;
+			border: 4px solid #111111;
+			font-size: clamp(1.2rem, 1.9vw, 1.65rem);
+			font-weight: 800;
+			letter-spacing: 0.34em;
+			text-transform: uppercase;
+		}
+
+		.about-intro {
+			margin: 38px auto 26px;
+			max-width: 740px;
+			font-size: 0.92rem;
+			line-height: 1.72;
+			color: #3f3f3f;
+		}
+
+		.about-explore {
+			display: inline-block;
+			position: relative;
+			padding: 0 22px;
+			font-size: 0.7rem;
+			font-weight: 700;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: #1f1f1f;
+		}
+
+		.about-explore::before,
+		.about-explore::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			width: 2px;
+			height: 20px;
+			background: #111111;
+			transform: translateY(-50%);
+		}
+
+		.about-explore::before {
+			left: 0;
+		}
+
+		.about-explore::after {
+			right: 0;
+		}
+
+		.about-divider {
+			margin: 44px auto 62px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 14px;
+			font-size: 0.92rem;
+			font-weight: 700;
+			letter-spacing: 0.16em;
+		}
+
+		.about-divider::before,
+		.about-divider::after {
+			content: '';
+			width: 42px;
+			height: 2px;
+			background: #111111;
+		}
+
+		.about-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 58px 74px;
+			text-align: left;
+		}
+
+		.about-item {
+			max-width: 360px;
+			margin: 0 auto;
+			position: relative;
+			padding-left: 20px;
+		}
+
+		.about-item::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 8px;
+			width: 8px;
+			height: 8px;
+			background: #b3b3b3;
+			transform: rotate(45deg);
+		}
+
+		.about-item h3 {
+			margin: 0 0 10px;
+			font-size: 1.34rem;
+			font-weight: 800;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+		}
+
+		.about-item p {
+			margin: 0;
+			font-size: 0.88rem;
+			line-height: 1.7;
+			color: #4f4f4f;
+		}
+
+		.about-item.about-item-center {
+			grid-column: 1 / -1;
+		}
+
+		.about-divider.about-divider-bottom {
+			margin: 64px auto 0;
+		}
+
+		.skills-section {
+			background: #d9d9d9;
+			color: #111111;
+			padding: 38px 24px 110px;
+			scroll-margin-top: 16px;
+		}
+
+		.skills-wrap {
+			max-width: 760px;
+			margin: 0 auto;
+		}
+
+		.skills-title {
+			margin: 0 auto;
+			display: block;
+			width: fit-content;
+			padding: 10px 48px;
+			border: 3px solid #111111;
+			font-size: 0.9rem;
+			font-weight: 800;
+			letter-spacing: 0.52em;
+			text-transform: uppercase;
+		}
+
+		.skills-block {
+			margin-top: 52px;
+		}
+
+		.skills-label {
+			margin: 0 0 26px;
+			font-size: 0.82rem;
+			font-weight: 700;
+			letter-spacing: 0.28em;
+			text-transform: uppercase;
+		}
+
+		.skills-grid {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 28px 18px;
+		}
+
+		.skill-card {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+			text-align: center;
+		}
+
+		.skill-card img {
+			width: 42px;
+			height: 42px;
+			object-fit: contain;
+		}
+
+		.skill-card span {
+			font-size: 0.62rem;
+			font-weight: 600;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			color: #2a2a2a;
+		}
+
+		.contact-section {
+			background: #d9d9d9;
+			color: #111111;
+			padding: 34px 24px 120px;
+			scroll-margin-top: 16px;
+		}
+
+		.contact-wrap {
+			max-width: 820px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.contact-title {
+			margin: 0 auto;
+			display: block;
+			width: fit-content;
+			padding: 12px 56px;
+			border: 5px solid #111111;
+			font-size: 1.02rem;
+			font-weight: 800;
+			letter-spacing: 0.52em;
+			text-transform: uppercase;
+		}
+
+		.contact-intro {
+			margin: 34px auto 18px;
+			max-width: 580px;
+			font-size: 0.78rem;
+			line-height: 1.75;
+			color: #2f2f2f;
+		}
+
+		.contact-divider {
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 12px;
+			font-size: 0.92rem;
+			font-weight: 700;
+			letter-spacing: 0.16em;
+		}
+
+		.contact-divider::before,
+		.contact-divider::after {
+			content: '';
+			width: 34px;
+			height: 2px;
+			background: #111111;
+		}
+
+		.contact-form {
+			margin: 64px auto 0;
+			max-width: 690px;
+			text-align: left;
+		}
+
+		.contact-field {
+			margin-bottom: 32px;
+			border-left: 4px solid #111111;
+			border-bottom: 4px solid #111111;
+			padding: 10px 10px 8px;
+		}
+
+		.contact-field input,
+		.contact-field textarea {
+			width: 100%;
+			border: 0;
+			outline: 0;
+			padding: 0;
+			background: transparent;
+			font-family: 'Space Grotesk', sans-serif;
+			font-size: 0.72rem;
+			font-weight: 600;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			color: #111111;
+		}
+
+		.contact-field input::placeholder,
+		.contact-field textarea::placeholder {
+			color: #777777;
+			opacity: 1;
+		}
+
+		.contact-field textarea {
+			min-height: 88px;
+			resize: vertical;
+		}
+
+		.contact-field.contact-field-message {
+			margin-top: 38px;
+			padding-top: 12px;
+			padding-bottom: 12px;
+		}
+
+		.contact-submit {
+			margin: 8px auto 0;
+			display: block;
+			position: relative;
+			padding: 0 34px;
+			border: 0;
+			background: transparent;
+			font-family: 'Space Grotesk', sans-serif;
+			font-size: 0.82rem;
+			font-weight: 800;
+			letter-spacing: 0.24em;
+			text-transform: uppercase;
+			color: #111111;
+			cursor: pointer;
+		}
+
+		.contact-submit::before,
+		.contact-submit::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			width: 2px;
+			height: 28px;
+			background: #111111;
+			transform: translateY(-50%);
+		}
+
+		.contact-submit::before {
+			left: 0;
+		}
+
+		.contact-submit::after {
+			right: 0;
+		}
+
 		@media (max-width: 1080px) {
 			.portfolio-hero {
 				grid-template-columns: 1fr;
@@ -265,6 +594,29 @@
 			.portrait {
 				width: min(560px, 96%);
 			}
+
+			.about-section {
+				padding-top: 82px;
+				padding-bottom: 90px;
+			}
+
+			.about-grid {
+				gap: 44px 30px;
+			}
+
+			.skills-section {
+				padding-top: 30px;
+				padding-bottom: 84px;
+			}
+
+			.contact-section {
+				padding-top: 28px;
+				padding-bottom: 92px;
+			}
+
+			.contact-form {
+				max-width: 640px;
+			}
 		}
 
 		@media (max-width: 640px) {
@@ -283,6 +635,80 @@
 			.social-links {
 				margin-top: 28px;
 			}
+
+			.about-title {
+				padding: 14px 26px;
+				letter-spacing: 0.2em;
+			}
+
+			.about-intro {
+				font-size: 0.86rem;
+			}
+
+			.about-grid {
+				grid-template-columns: 1fr;
+				gap: 36px;
+			}
+
+			.about-item,
+			.about-item.about-item-center {
+				grid-column: auto;
+			}
+
+			.skills-title {
+				padding: 10px 30px;
+				letter-spacing: 0.28em;
+			}
+
+			.skills-block {
+				margin-top: 40px;
+			}
+
+			.skills-label {
+				font-size: 0.72rem;
+				letter-spacing: 0.2em;
+			}
+
+			.skills-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 24px 16px;
+			}
+
+			.contact-title {
+				padding: 10px 28px;
+				font-size: 0.92rem;
+				letter-spacing: 0.32em;
+				border-width: 4px;
+			}
+
+			.contact-intro {
+				font-size: 0.74rem;
+			}
+
+			.contact-form {
+				margin-top: 44px;
+			}
+
+			.contact-field {
+				margin-bottom: 24px;
+				border-left-width: 3px;
+				border-bottom-width: 3px;
+			}
+
+			.contact-field input,
+			.contact-field textarea {
+				font-size: 0.66rem;
+			}
+
+			.contact-field.contact-field-message {
+				margin-top: 28px;
+			}
+
+			.contact-submit {
+				font-size: 0.74rem;
+				letter-spacing: 0.18em;
+				padding: 0 26px;
+			}
 		}
 
 		@media (prefers-reduced-motion: reduce) {
@@ -299,7 +725,7 @@
 {% block body %}
 	<main class="portfolio-hero">
 		<section class="intro-pane">
-			<div class="brand-mark" aria-label="Personal logo">APP</div>
+			<img class="brand-mark" src="{{ asset('images/app-logo.svg') }}?v=20260412" alt="APP logo" loading="eager" decoding="async">
 
 			<div class="intro-copy">
 				<p class="lead">Hi, I am</p>
@@ -330,7 +756,7 @@
 
 		<section class="visual-pane">
 			<nav class="top-nav" aria-label="Primary">
-				<a href="#about">About me</a>
+				<a id="about-link" href="#about">About me</a>
 				<a href="#skills">Skills</a>
 				<a href="#portfolio">Portfolio</a>
 				<a href="#contact" class="contact-link">CONTACT ME</a>
@@ -339,4 +765,161 @@
 			<img class="portrait" src="{{ asset('images/1321 (1).png') }}" alt="Portrait photo">
 		</section>
 	</main>
+
+	<section id="about" class="about-section">
+		<div class="about-wrap">
+			<h2 class="about-title">About Me</h2>
+			<p class="about-intro">
+				I design and build clean, functional web experiences from concept to deployment.
+				My focus is combining strong UI structure with practical full-stack implementation.
+			</p>
+			<div class="about-explore">Explore</div>
+			<div class="about-divider">W</div>
+
+			<div class="about-grid">
+				<article class="about-item">
+					<h3>Design</h3>
+					<p>
+						I craft thoughtful interfaces based on project goals, user needs, and clear visual hierarchy.
+					</p>
+				</article>
+
+				<article class="about-item">
+					<h3>Development</h3>
+					<p>
+						I build responsive front-end and robust back-end features with clean, maintainable code.
+					</p>
+				</article>
+
+				<article class="about-item about-item-center">
+					<h3>Maintenance</h3>
+					<p>
+						I improve performance, fix issues quickly, and keep projects stable after deployment.
+					</p>
+				</article>
+			</div>
+
+			<div class="about-divider about-divider-bottom">W</div>
+		</div>
+	</section>
+
+	<section id="skills" class="skills-section">
+		<div class="skills-wrap">
+			<h2 class="skills-title">Skills</h2>
+
+			<div class="skills-block">
+				<h3 class="skills-label">Using now:</h3>
+				<div class="skills-grid">
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy" decoding="async">
+						<span>HTML5</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy" decoding="async">
+						<span>CSS3</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="Sass" loading="lazy" decoding="async">
+						<span>Sass</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy" decoding="async">
+						<span>JavaScript</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" loading="lazy" decoding="async">
+						<span>React</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" loading="lazy" decoding="async">
+						<span>Bootstrap</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" loading="lazy" decoding="async">
+						<span>Git</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" loading="lazy" decoding="async">
+						<span>Figma</span>
+					</article>
+				</div>
+			</div>
+
+			<div class="skills-block">
+				<h3 class="skills-label">Learning:</h3>
+				<div class="skills-grid">
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" loading="lazy" decoding="async">
+						<span>NodeJS</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy" decoding="async">
+						<span>MySQL</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" loading="lazy" decoding="async">
+						<span>MongoDB</span>
+					</article>
+					<article class="skill-card">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" loading="lazy" decoding="async">
+						<span>TypeScript</span>
+					</article>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="contact" class="contact-section">
+		<div class="contact-wrap">
+			<h2 class="contact-title">Contact</h2>
+			<p class="contact-intro">
+				Nulla in velit a metus rhoncus tempus. Nulla congue nulla vel sem varius finibus. Sed ornare sit amet lorem
+				sed viverra. In vel urna quis libero viverra facilisis ut ac est.
+			</p>
+			<div class="contact-divider">W</div>
+
+			<form class="contact-form" action="#" method="post">
+				<div class="contact-field">
+					<input type="text" name="name" placeholder="Enter your name*" required>
+				</div>
+
+				<div class="contact-field">
+					<input type="email" name="email" placeholder="Enter your email*" required>
+				</div>
+
+				<div class="contact-field">
+					<input type="tel" name="phone" placeholder="Phone number">
+				</div>
+
+				<div class="contact-field contact-field-message">
+					<textarea name="message" placeholder="Your message*" required></textarea>
+				</div>
+
+				<button class="contact-submit" type="submit">Submit</button>
+			</form>
+		</div>
+	</section>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const aboutLink = document.getElementById('about-link');
+			const aboutSection = document.getElementById('about');
+
+			if (!aboutLink || !aboutSection) {
+				return;
+			}
+
+			aboutLink.addEventListener('click', function (event) {
+				event.preventDefault();
+				aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				history.replaceState(null, '', '#about');
+			});
+
+			if (window.location.hash === '#about') {
+				requestAnimationFrame(function () {
+					aboutSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+				});
+			}
+		});
+	</script>
 {% endblock %}

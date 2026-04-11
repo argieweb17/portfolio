@@ -15,7 +15,15 @@ if (!is_file(dirname(__DIR__).'/vendor/autoload_runtime.php')) {
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 
 return function (array $context) {
-    $kernel = new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
+    $env = $context['APP_ENV'] ?? 'prod';
+    $debug = (bool) ($context['APP_DEBUG'] ?? false);
+
+    if ('dev' === $env && !class_exists('Symfony\\Bundle\\DebugBundle\\DebugBundle')) {
+        $env = 'prod';
+        $debug = false;
+    }
+
+    $kernel = new Kernel($env, $debug);
 
     return new Application($kernel);
 };
