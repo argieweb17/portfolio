@@ -20,6 +20,9 @@ WORKDIR /app
 
 COPY . .
 
+ENV APP_ENV=prod
+ENV APP_DEBUG=0
+
 RUN composer install \
     --no-dev \
     --no-interaction \
