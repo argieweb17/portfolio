@@ -1,0 +1,325 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block stylesheets %}
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap');
+
+		:root {
+			--left-bg: #d3d3d3;
+			--right-bg: #050505;
+			--left-text: #111111;
+			--muted-text: #7a7a7a;
+			--card-bg: #bcbcbc;
+			--pill-bg: #f2f2f2;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			font-family: 'Space Grotesk', sans-serif;
+			background: var(--right-bg);
+			color: #ffffff;
+		}
+
+		.portfolio-hero {
+			min-height: 100vh;
+			display: grid;
+			grid-template-columns: minmax(360px, 53%) 1fr;
+			overflow: hidden;
+		}
+
+		.intro-pane {
+			background: var(--left-bg);
+			color: var(--left-text);
+			padding: 54px 82px 70px 64px;
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			z-index: 1;
+		}
+
+		.brand-mark {
+			font-size: 1.95rem;
+			font-weight: 800;
+			letter-spacing: -0.08em;
+			width: fit-content;
+			transform: skewX(-10deg);
+			border-bottom: 3px solid #111111;
+			padding-bottom: 2px;
+		}
+
+		.intro-copy {
+			margin-top: auto;
+			margin-bottom: 18vh;
+			max-width: 460px;
+			opacity: 0;
+			animation: popUpLeft 740ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+			will-change: transform, opacity;
+		}
+
+		.intro-copy .lead {
+			margin: 0;
+			font-size: clamp(1.8rem, 2.3vw, 2.9rem);
+			font-weight: 700;
+			line-height: 1.1;
+		}
+
+		.intro-copy h1 {
+			margin: 12px 0 8px;
+			font-size: clamp(2.4rem, 4.2vw, 5rem);
+			line-height: 1;
+			letter-spacing: -0.04em;
+			font-weight: 800;
+		}
+
+		.intro-copy .role {
+			margin: 0;
+			font-size: clamp(1rem, 1.25vw, 1.45rem);
+			font-weight: 700;
+			color: var(--muted-text);
+		}
+
+		.social-links {
+			margin-top: 44px;
+			display: flex;
+			gap: 14px;
+			opacity: 0;
+			animation: popUpLeft 680ms cubic-bezier(0.22, 1, 0.36, 1) 420ms forwards;
+			will-change: transform, opacity;
+		}
+
+		@keyframes popUpLeft {
+			0% {
+				opacity: 0;
+				transform: translate3d(-28px, 40px, 0) scale(0.96);
+			}
+
+			100% {
+				opacity: 1;
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+		}
+
+		@keyframes popUpRight {
+			0% {
+				opacity: 0;
+				transform: translate3d(34px, 46px, 0) scale(0.95);
+			}
+
+			100% {
+				opacity: 1;
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+		}
+
+		.social-links a {
+			width: 54px;
+			height: 54px;
+			display: grid;
+			place-items: center;
+			text-decoration: none;
+			color: #111111;
+			background: #c8c8c8;
+			border-radius: 4px;
+			font-size: 2rem;
+			font-weight: 600;
+			box-shadow: 0 2px 0 rgba(17, 17, 17, 0.26);
+			transition: transform 140ms ease, background-color 140ms ease;
+		}
+
+		.social-links a svg {
+			width: 26px;
+			height: 26px;
+			display: block;
+			fill: #111111;
+		}
+
+		.social-links .icon-at {
+			line-height: 1;
+			transform: translateY(-1px);
+		}
+
+		.social-links a:hover {
+			transform: translateY(-2px);
+			background: #b0b0b0;
+		}
+
+		.visual-pane {
+			background: var(--right-bg);
+			position: relative;
+			padding: 34px 56px 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			z-index: 2;
+		}
+
+		.visual-pane::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: -72px;
+			width: 320px;
+			background: var(--right-bg);
+			transform: skewX(-11deg);
+			transform-origin: right top;
+		}
+
+		.top-nav {
+			width: 100%;
+			position: relative;
+			z-index: 2;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			gap: 38px;
+			font-size: 0.95rem;
+			font-weight: 600;
+			padding-right: 8px;
+		}
+
+		.top-nav a {
+			text-decoration: none;
+			color: rgba(255, 255, 255, 0.92);
+			transition: opacity 140ms ease;
+		}
+
+		.top-nav a:hover {
+			opacity: 0.7;
+		}
+
+		.top-nav .contact-link {
+			color: #111111;
+			background: var(--pill-bg);
+			border-radius: 999px;
+			padding: 12px 22px;
+			font-size: 0.82rem;
+			font-weight: 800;
+			letter-spacing: 0.02em;
+		}
+
+		.portrait {
+			position: relative;
+			z-index: 2;
+			width: min(680px, 92%);
+			max-height: 84vh;
+			margin-top: auto;
+			object-fit: contain;
+			object-position: center bottom;
+			opacity: 0;
+			animation: popUpRight 880ms cubic-bezier(0.22, 1, 0.36, 1) 260ms forwards;
+			will-change: transform, opacity;
+			filter: drop-shadow(0 20px 44px rgba(0, 0, 0, 0.45));
+		}
+
+		@media (max-width: 1080px) {
+			.portfolio-hero {
+				grid-template-columns: 1fr;
+			}
+
+			.intro-pane {
+				padding: 34px 24px 30px;
+			}
+
+			.intro-copy {
+				margin: 56px 0 10px;
+			}
+
+			.visual-pane {
+				padding: 26px 18px 0;
+			}
+
+			.visual-pane::before {
+				display: none;
+			}
+
+			.top-nav {
+				justify-content: center;
+				gap: 22px;
+				flex-wrap: wrap;
+				font-size: 0.88rem;
+			}
+
+			.portrait {
+				width: min(560px, 96%);
+			}
+		}
+
+		@media (max-width: 640px) {
+			.intro-copy h1 {
+				margin-top: 8px;
+			}
+
+			.top-nav {
+				gap: 14px;
+			}
+
+			.top-nav .contact-link {
+				padding: 10px 18px;
+			}
+
+			.social-links {
+				margin-top: 28px;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.intro-copy,
+			.social-links,
+			.portrait {
+				animation: none;
+				opacity: 1;
+			}
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<main class="portfolio-hero">
+		<section class="intro-pane">
+			<div class="brand-mark" aria-label="Personal logo">APP</div>
+
+			<div class="intro-copy">
+				<p class="lead">Hi, I am</p>
+				<h1>Argie Pair Pagbunocan</h1>
+				<p class="role">Full Stack Web Developer | Graphic Desinger</p>
+
+				<div class="social-links">
+					<a href="mailto:hello@example.com" aria-label="Send email">
+						<span class="icon-at">@</span>
+					</a>
+					<a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub">
+						<svg viewBox="0 0 16 16" aria-hidden="true">
+							<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59c.4.07.55-.17.55-.38c0-.19-.01-.82-.01-1.49c-2.01.37-2.53-.49-2.69-.94c-.09-.23-.48-.94-.82-1.13c-.28-.15-.68-.52-.01-.53c.63-.01 1.08.58 1.23.82c.72 1.21 1.87.87 2.33.66c.07-.52.28-.87.5-1.07c-1.78-.2-3.64-.89-3.64-3.95c0-.87.31-1.59.82-2.15c-.08-.2-.36-1.02.08-2.12c0 0 .67-.21 2.2.82c.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82c.44 1.1.16 1.92.08 2.12c.51.56.82 1.27.82 2.15c0 3.07-1.87 3.75-3.65 3.95c.29.25.54.73.54 1.48c0 1.07-.01 1.93-.01 2.2c0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+						</svg>
+					</a>
+					<a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<circle cx="12" cy="12" r="11" />
+							<path fill="#ffffff" d="M8.85 10.04h2.06v6.28H8.85v-6.28Zm1.03-3.22a1.2 1.2 0 1 1 0 2.4a1.2 1.2 0 0 1 0-2.4Zm2.31 3.22h1.98v.86h.03c.28-.53.95-1.08 1.95-1.08c2.08 0 2.47 1.37 2.47 3.15v3.35h-2.07v-2.97c0-.71-.01-1.62-.99-1.62c-.99 0-1.14.77-1.14 1.57v3.02h-2.07v-6.28Z"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="visual-pane">
+			<nav class="top-nav" aria-label="Primary">
+				<a href="#about">About me</a>
+				<a href="#skills">Skills</a>
+				<a href="#portfolio">Portfolio</a>
+				<a href="#contact" class="contact-link">CONTACT ME</a>
+			</nav>
+
+			<img class="portrait" src="{{ asset('images/1321 (1).png') }}" alt="Portrait photo">
+		</section>
+	</main>
+{% endblock %}
