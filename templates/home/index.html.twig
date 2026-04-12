@@ -601,6 +601,9 @@
 		}
 
 		.project-view {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
 			text-decoration: none;
 			color: #111111;
 			background: #f3f3f3;
@@ -610,6 +613,12 @@
 			font-weight: 800;
 			letter-spacing: 0.18em;
 			text-transform: uppercase;
+		}
+
+		.project-view.is-disabled {
+			background: #3d3d3d;
+			color: #a8a8a8;
+			cursor: not-allowed;
 		}
 
 		.contact-section {
@@ -1146,7 +1155,7 @@
 					<img src="{{ asset('images/projects/project-2.svg') }}" alt="Project preview 2">
 					<div class="project-meta">
 						<h3 class="project-name">Project 02</h3>
-						<a class="project-view" href="{{ asset('images/projects/project-2.svg') }}" target="_blank" rel="noreferrer">View</a>
+						<span class="project-view is-disabled" aria-disabled="true">No image</span>
 					</div>
 				</article>
 
@@ -1154,7 +1163,7 @@
 					<img src="{{ asset('images/projects/project-3.svg') }}" alt="Project preview 3">
 					<div class="project-meta">
 						<h3 class="project-name">Project 03</h3>
-						<a class="project-view" href="{{ asset('images/projects/project-3.svg') }}" target="_blank" rel="noreferrer">View</a>
+						<span class="project-view is-disabled" aria-disabled="true">No image</span>
 					</div>
 				</article>
 
@@ -1162,7 +1171,7 @@
 					<img src="{{ asset('images/projects/project-4.svg') }}" alt="Project preview 4">
 					<div class="project-meta">
 						<h3 class="project-name">Project 04</h3>
-						<a class="project-view" href="{{ asset('images/projects/project-4.svg') }}" target="_blank" rel="noreferrer">View</a>
+						<span class="project-view is-disabled" aria-disabled="true">No image</span>
 					</div>
 				</article>
 
@@ -1170,7 +1179,7 @@
 					<img src="{{ asset('images/projects/project-5.svg') }}" alt="Project preview 5">
 					<div class="project-meta">
 						<h3 class="project-name">Project 05</h3>
-						<a class="project-view" href="{{ asset('images/projects/project-5.svg') }}" target="_blank" rel="noreferrer">View</a>
+						<span class="project-view is-disabled" aria-disabled="true">No image</span>
 					</div>
 				</article>
 
@@ -1178,7 +1187,7 @@
 					<img src="{{ asset('images/projects/project-6.svg') }}" alt="Project preview 6">
 					<div class="project-meta">
 						<h3 class="project-name">Project 06</h3>
-						<a class="project-view" href="{{ asset('images/projects/project-6.svg') }}" target="_blank" rel="noreferrer">View</a>
+						<span class="project-view is-disabled" aria-disabled="true">No image</span>
 					</div>
 				</article>
 			</div>
