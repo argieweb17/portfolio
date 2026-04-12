@@ -58,6 +58,21 @@
 			display: block;
 		}
 
+		.it-logo-mark {
+			position: absolute;
+			top: clamp(24px, 4vw, 40px);
+			left: clamp(190px, 23vw, 340px);
+			right: auto;
+			width: clamp(130px, 17vw, 250px);
+			height: auto;
+			z-index: 2;
+			pointer-events: none;
+			filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.16));
+			opacity: 0;
+			animation: popUpLeft 720ms cubic-bezier(0.22, 1, 0.36, 1) 220ms forwards;
+			will-change: transform, opacity;
+		}
+
 		.intro-copy {
 			margin-top: auto;
 			margin-bottom: 18vh;
@@ -906,6 +921,13 @@
 				padding: 34px 24px 30px;
 			}
 
+			.it-logo-mark {
+				top: 18px;
+				left: 230px;
+				right: auto;
+				width: clamp(120px, 30vw, 190px);
+			}
+
 			.intro-copy {
 				margin: 56px 0 10px;
 			}
@@ -963,6 +985,13 @@
 		}
 
 		@media (max-width: 640px) {
+			.it-logo-mark {
+				top: 14px;
+				left: 168px;
+				right: auto;
+				width: clamp(84px, 24vw, 120px);
+			}
+
 			.intro-copy h1 {
 				margin-top: 8px;
 			}
@@ -1140,6 +1169,7 @@
 		@media (prefers-reduced-motion: reduce) {
 			.intro-copy,
 			.social-links,
+			.it-logo-mark,
 			.portrait {
 				animation: none;
 				opacity: 1;
@@ -1167,6 +1197,7 @@
 	<main id="top" class="portfolio-hero">
 		<section class="intro-pane">
 			<img class="brand-mark" src="{{ asset('images/app-logo.svg') }}?v=20260412b" alt="APP logo" loading="eager" decoding="async">
+			<img class="it-logo-mark" src="{{ asset('images/IT LOGO.png') }}" alt="Information Technology Society logo" loading="lazy" decoding="async">
 
 			<div class="intro-copy">
 				<p class="lead"><span class="js-type" data-typing-speed="150" data-typing-delay="180">Hi, I am</span></p>
