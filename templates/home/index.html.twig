@@ -82,6 +82,17 @@
 			font-weight: 800;
 		}
 
+		.intro-copy .js-type.is-typing::after {
+			content: '';
+			display: inline-block;
+			width: 3px;
+			height: 0.9em;
+			margin-left: 8px;
+			background: #111111;
+			vertical-align: -0.08em;
+			animation: caretBlink 780ms steps(1, end) infinite;
+		}
+
 		.intro-copy .role {
 			margin: 0;
 			font-size: clamp(1rem, 1.25vw, 1.45rem);
@@ -129,6 +140,18 @@
 
 			100% {
 				transform: translateY(120%);
+			}
+		}
+
+		@keyframes caretBlink {
+			0%,
+			49% {
+				opacity: 1;
+			}
+
+			50%,
+			100% {
+				opacity: 0;
 			}
 		}
 
@@ -797,6 +820,11 @@
 				opacity: 1;
 			}
 
+			.intro-copy .js-type::after {
+				animation: none;
+				content: none;
+			}
+
 			.binary-stream {
 				animation: none;
 				transform: translateY(0);
@@ -812,8 +840,8 @@
 			<img class="brand-mark" src="{{ asset('images/app-logo.svg') }}?v=20260412b" alt="APP logo" loading="eager" decoding="async">
 
 			<div class="intro-copy">
-				<p class="lead">Hi, I am</p>
-				<h1>Argie Pair Pagbunocan</h1>
+				<p class="lead"><span class="js-type" data-typing-speed="150" data-typing-delay="180">Hi, I am</span></p>
+				<h1><span class="js-type" data-typing-speed="165" data-typing-delay="620">Argie Pair Pagbunocan</span></h1>
 				<p class="role">Full Stack Web Developer | Graphic Desinger</p>
 
 				<div class="social-links">
@@ -926,8 +954,8 @@
 						<span>CSS3</span>
 					</article>
 					<article class="skill-card">
-						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="Sass" loading="lazy" decoding="async">
-						<span>Sass</span>
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" loading="lazy" decoding="async">
+						<span>Symfony</span>
 					</article>
 					<article class="skill-card">
 						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy" decoding="async">
@@ -946,8 +974,8 @@
 						<span>Git</span>
 					</article>
 					<article class="skill-card">
-						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" loading="lazy" decoding="async">
-						<span>Figma</span>
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" loading="lazy" decoding="async">
+						<span>Laravel</span>
 					</article>
 				</div>
 			</div>
@@ -1011,6 +1039,38 @@
 		document.addEventListener('DOMContentLoaded', function () {
 			const aboutLink = document.getElementById('about-link');
 			const aboutSection = document.getElementById('about');
+			const typeTargets = document.querySelectorAll('.js-type');
+			const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			typeTargets.forEach(function (target) {
+				const fullText = target.getAttribute('data-full-text') || target.textContent;
+				target.setAttribute('data-full-text', fullText);
+
+				if (prefersReducedMotion) {
+					target.classList.add('is-typed');
+					return;
+				}
+
+				const speed = Number(target.getAttribute('data-typing-speed')) || 140;
+				const delay = Number(target.getAttribute('data-typing-delay')) || 0;
+				target.textContent = '';
+
+				window.setTimeout(function () {
+					let index = 0;
+					target.classList.add('is-typing');
+
+					const ticker = window.setInterval(function () {
+						index += 1;
+						target.textContent = fullText.slice(0, index);
+
+						if (index >= fullText.length) {
+							window.clearInterval(ticker);
+							target.classList.remove('is-typing');
+							target.classList.add('is-typed');
+						}
+					}, speed);
+				}, delay);
+			});
 
 			if (!aboutLink || !aboutSection) {
 				return;
