@@ -523,6 +523,95 @@
 			color: #2a2a2a;
 		}
 
+		.projects-section {
+			background: #111111;
+			color: #f4f4f4;
+			padding: 42px 24px 118px;
+			scroll-margin-top: 16px;
+		}
+
+		.projects-wrap {
+			max-width: 1120px;
+			margin: 0 auto;
+		}
+
+		.projects-title {
+			margin: 0 auto;
+			display: block;
+			width: fit-content;
+			padding: 10px 46px;
+			border: 3px solid #f4f4f4;
+			font-size: 0.92rem;
+			font-weight: 800;
+			letter-spacing: 0.42em;
+			text-transform: uppercase;
+		}
+
+		.projects-intro {
+			margin: 28px auto 34px;
+			max-width: 680px;
+			font-size: 0.84rem;
+			line-height: 1.72;
+			text-align: center;
+			color: #c4c4c4;
+		}
+
+		.projects-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 24px;
+		}
+
+		.project-card {
+			background: #181818;
+			border: 1px solid #2d2d2d;
+			border-radius: 14px;
+			overflow: hidden;
+			transition: transform 180ms ease, border-color 180ms ease;
+		}
+
+		.project-card:hover {
+			transform: translateY(-3px);
+			border-color: #4a4a4a;
+		}
+
+		.project-card img {
+			width: 100%;
+			display: block;
+			aspect-ratio: 16 / 10;
+			object-fit: cover;
+			background: #0f0f0f;
+		}
+
+		.project-meta {
+			padding: 14px 16px 16px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+		}
+
+		.project-name {
+			margin: 0;
+			font-size: 0.84rem;
+			font-weight: 700;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			color: #f2f2f2;
+		}
+
+		.project-view {
+			text-decoration: none;
+			color: #111111;
+			background: #f3f3f3;
+			padding: 8px 14px;
+			border-radius: 999px;
+			font-size: 0.66rem;
+			font-weight: 800;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+		}
+
 		.contact-section {
 			background: #d9d9d9;
 			color: #111111;
@@ -701,6 +790,15 @@
 				padding-bottom: 84px;
 			}
 
+			.projects-section {
+				padding-top: 34px;
+				padding-bottom: 92px;
+			}
+
+			.projects-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
 			.contact-section {
 				padding-top: 28px;
 				padding-bottom: 92px;
@@ -764,6 +862,30 @@
 			.skills-grid {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 				gap: 24px 16px;
+			}
+
+			.projects-title {
+				padding: 10px 30px;
+				letter-spacing: 0.26em;
+			}
+
+			.projects-intro {
+				font-size: 0.78rem;
+				margin-bottom: 24px;
+			}
+
+			.projects-grid {
+				grid-template-columns: 1fr;
+				gap: 18px;
+			}
+
+			.project-meta {
+				padding: 12px 14px 14px;
+			}
+
+			.project-name {
+				font-size: 0.74rem;
+				letter-spacing: 0.1em;
 			}
 
 			.binary-rain {
@@ -1000,6 +1122,65 @@
 						<span>TypeScript</span>
 					</article>
 				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="portfolio" class="projects-section">
+		<div class="projects-wrap">
+			<h2 class="projects-title">Portfolio</h2>
+			<p class="projects-intro">
+				A visual grid of recent project work. Use the View button on each card to open the full preview.
+			</p>
+
+			<div class="projects-grid">
+				<article class="project-card">
+					<img src="{{ asset('images/projects/prod1.png') }}" alt="Project preview 1">
+					<div class="project-meta">
+						<h3 class="project-name">Project 01</h3>
+						<a class="project-view" href="{{ asset('images/projects/prod1.png') }}" target="_blank" rel="noreferrer">View</a>
+					</div>
+				</article>
+
+				<article class="project-card">
+					<img src="{{ asset('images/projects/project-2.svg') }}" alt="Project preview 2">
+					<div class="project-meta">
+						<h3 class="project-name">Project 02</h3>
+						<a class="project-view" href="{{ asset('images/projects/project-2.svg') }}" target="_blank" rel="noreferrer">View</a>
+					</div>
+				</article>
+
+				<article class="project-card">
+					<img src="{{ asset('images/projects/project-3.svg') }}" alt="Project preview 3">
+					<div class="project-meta">
+						<h3 class="project-name">Project 03</h3>
+						<a class="project-view" href="{{ asset('images/projects/project-3.svg') }}" target="_blank" rel="noreferrer">View</a>
+					</div>
+				</article>
+
+				<article class="project-card">
+					<img src="{{ asset('images/projects/project-4.svg') }}" alt="Project preview 4">
+					<div class="project-meta">
+						<h3 class="project-name">Project 04</h3>
+						<a class="project-view" href="{{ asset('images/projects/project-4.svg') }}" target="_blank" rel="noreferrer">View</a>
+					</div>
+				</article>
+
+				<article class="project-card">
+					<img src="{{ asset('images/projects/project-5.svg') }}" alt="Project preview 5">
+					<div class="project-meta">
+						<h3 class="project-name">Project 05</h3>
+						<a class="project-view" href="{{ asset('images/projects/project-5.svg') }}" target="_blank" rel="noreferrer">View</a>
+					</div>
+				</article>
+
+				<article class="project-card">
+					<img src="{{ asset('images/projects/project-6.svg') }}" alt="Project preview 6">
+					<div class="project-meta">
+						<h3 class="project-name">Project 06</h3>
+						<a class="project-view" href="{{ asset('images/projects/project-6.svg') }}" target="_blank" rel="noreferrer">View</a>
+					</div>
+				</article>
 			</div>
 		</div>
 	</section>

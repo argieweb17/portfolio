@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#25180c"/>
+      <stop offset="100%" stop-color="#553117"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg4)"/>
+  <rect x="66" y="58" width="1068" height="644" rx="22" fill="#321f11" stroke="#d4833f" stroke-width="4"/>
+  <rect x="96" y="96" width="1008" height="270" rx="12" fill="#3f2715"/>
+  <rect x="96" y="392" width="280" height="262" rx="12" fill="#613817"/>
+  <rect x="398" y="392" width="280" height="262" rx="12" fill="#6f4120"/>
+  <rect x="700" y="392" width="404" height="262" rx="12" fill="#824e29"/>
+  <rect x="126" y="426" width="220" height="14" rx="7" fill="#ffd3a9"/>
+  <rect x="428" y="426" width="220" height="14" rx="7" fill="#ffd3a9"/>
+  <rect x="730" y="426" width="344" height="14" rx="7" fill="#ffd3a9"/>
+  <text x="96" y="548" fill="#ffe6cf" font-family="Arial, sans-serif" font-size="48" font-weight="700">Project 04</text>
+</svg>

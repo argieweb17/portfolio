@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#142014"/>
+      <stop offset="100%" stop-color="#204a20"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg3)"/>
+  <rect x="66" y="58" width="1068" height="644" rx="22" fill="#19301a" stroke="#43a047" stroke-width="4"/>
+  <rect x="96" y="96" width="316" height="224" rx="12" fill="#1f3c21"/>
+  <rect x="430" y="96" width="316" height="224" rx="12" fill="#27522b"/>
+  <rect x="764" y="96" width="340" height="224" rx="12" fill="#2f6635"/>
+  <rect x="96" y="350" width="1008" height="32" rx="10" fill="#4caf50"/>
+  <rect x="96" y="404" width="940" height="18" rx="9" fill="#9ad59d"/>
+  <rect x="96" y="434" width="890" height="18" rx="9" fill="#9ad59d" opacity="0.85"/>
+  <rect x="96" y="464" width="820" height="18" rx="9" fill="#9ad59d" opacity="0.72"/>
+  <text x="96" y="548" fill="#e5ffe7" font-family="Arial, sans-serif" font-size="48" font-weight="700">Project 03</text>
+</svg>
