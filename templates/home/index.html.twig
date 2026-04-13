@@ -173,6 +173,28 @@
 			color: #7a7a7a;
 		}
 
+		.scroll-reveal {
+			--slide-offset-x: 0px;
+			opacity: 0;
+			transform: translate3d(var(--slide-offset-x), 34px, 0);
+			transition: opacity 680ms cubic-bezier(0.22, 1, 0.36, 1), transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+			transition-delay: var(--reveal-delay, 0ms);
+			will-change: opacity, transform;
+		}
+
+		.scroll-reveal[data-scroll-reveal="left"] {
+			--slide-offset-x: -86px;
+		}
+
+		.scroll-reveal[data-scroll-reveal="right"] {
+			--slide-offset-x: 86px;
+		}
+
+		.scroll-reveal.is-visible {
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+
 		@keyframes popUpLeft {
 			0% {
 				opacity: 0;
@@ -515,6 +537,40 @@
 			color: #4f4f4f;
 		}
 
+		.about-grid .about-item {
+			opacity: 0;
+			transition: opacity 2100ms cubic-bezier(0.22, 1, 0.36, 1), transform 2100ms cubic-bezier(0.22, 1, 0.36, 1);
+		}
+
+		.about-grid .about-item:nth-child(1) {
+			transform: translate3d(-70px, 0, 0);
+		}
+
+		.about-grid .about-item:nth-child(2) {
+			transform: translate3d(70px, 0, 0);
+		}
+
+		.about-grid .about-item:nth-child(3) {
+			transform: translate3d(0, 34px, 0) scale(0.94);
+		}
+
+		.about-wrap.is-visible .about-grid .about-item {
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+
+		.about-wrap.is-visible .about-grid .about-item:nth-child(1) {
+			transition-delay: 520ms;
+		}
+
+		.about-wrap.is-visible .about-grid .about-item:nth-child(2) {
+			transition-delay: 1120ms;
+		}
+
+		.about-wrap.is-visible .about-grid .about-item:nth-child(3) {
+			transition-delay: 1720ms;
+		}
+
 		.about-item.about-item-center {
 			grid-column: 1 / -1;
 		}
@@ -645,6 +701,15 @@
 			align-items: center;
 			gap: 10px;
 			text-align: center;
+			opacity: 0;
+			transform: translate3d(0, 22px, 0) scale(0.96);
+			transition: opacity 620ms cubic-bezier(0.22, 1, 0.36, 1), transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+			transition-delay: var(--skill-reveal-delay, 0ms);
+		}
+
+		.skills-wrap.is-visible .skill-card {
+			opacity: 1;
+			transform: translate3d(0, 0, 0) scale(1);
 		}
 
 		.skill-card img {
@@ -898,6 +963,10 @@
 			border-left: 4px solid #111111;
 			border-bottom: 4px solid #111111;
 			padding: 10px 10px 8px;
+			opacity: 0;
+			transform: translate3d(0, 24px, 0);
+			transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+			transition-delay: var(--contact-reveal-delay, 0ms);
 		}
 
 		.contact-field input,
@@ -946,6 +1015,16 @@
 			text-transform: uppercase;
 			color: #111111;
 			cursor: pointer;
+			opacity: 0;
+			transform: translate3d(0, 24px, 0);
+			transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+			transition-delay: var(--contact-reveal-delay, 0ms);
+		}
+
+		.contact-wrap.is-visible .contact-form .contact-field,
+		.contact-wrap.is-visible .contact-form .contact-submit {
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
 		}
 
 		.contact-submit::before,
@@ -1086,6 +1165,14 @@
 				font-size: 0.57rem;
 			}
 
+			.scroll-reveal[data-scroll-reveal="left"] {
+				--slide-offset-x: -46px;
+			}
+
+			.scroll-reveal[data-scroll-reveal="right"] {
+				--slide-offset-x: 46px;
+			}
+
 			.about-title {
 				padding: 14px 26px;
 				letter-spacing: 0.2em;
@@ -1098,6 +1185,18 @@
 			.about-grid {
 				grid-template-columns: 1fr;
 				gap: 36px;
+			}
+
+			.about-grid .about-item:nth-child(1) {
+				transform: translate3d(-38px, 0, 0);
+			}
+
+			.about-grid .about-item:nth-child(2) {
+				transform: translate3d(38px, 0, 0);
+			}
+
+			.about-grid .about-item:nth-child(3) {
+				transform: translate3d(0, 24px, 0) scale(0.96);
 			}
 
 			.about-item,
@@ -1254,6 +1353,31 @@
 				opacity: 1;
 			}
 
+			.about-grid .about-item {
+				opacity: 1;
+				transform: none;
+				transition: none;
+			}
+
+			.skill-card {
+				opacity: 1;
+				transform: none;
+				transition: none;
+			}
+
+			.contact-field,
+			.contact-submit {
+				opacity: 1;
+				transform: none;
+				transition: none;
+			}
+
+			.scroll-reveal {
+				opacity: 1;
+				transform: none;
+				transition: none;
+			}
+
 			.intro-copy .js-type::after {
 				animation: none;
 				content: none;
@@ -1372,7 +1496,7 @@
 	</main>
 
 	<section id="about" class="about-section">
-		<div class="about-wrap">
+		<div class="about-wrap scroll-reveal" data-scroll-reveal="left" data-reveal-delay="0">
 			<h2 class="about-title">About Me</h2>
 			<p class="about-intro">
 				I design and build clean, functional web experiences from concept to deployment.
@@ -1409,7 +1533,7 @@
 	</section>
 
 	<section id="skills" class="skills-section">
-		<div class="skills-wrap">
+		<div class="skills-wrap scroll-reveal" data-scroll-reveal="right" data-reveal-delay="90">
 			<h2 class="skills-title">Skills</h2>
 
 			<div class="skills-block">
@@ -1521,7 +1645,7 @@
 	</section>
 
 	<section id="portfolio" class="projects-section">
-		<div class="projects-wrap">
+		<div class="projects-wrap scroll-reveal" data-scroll-reveal="left" data-reveal-delay="130">
 			<h2 class="projects-title">Portfolio</h2>
 			<p class="projects-intro">
 				A visual grid of recent project work. Use the View button on each card to open the full preview.
@@ -1580,7 +1704,7 @@
 	</section>
 
 	<section id="contact" class="contact-section">
-		<div class="contact-wrap">
+		<div class="contact-wrap scroll-reveal" data-scroll-reveal="right" data-reveal-delay="170">
 			<h2 class="contact-title">Contact</h2>
 			<p class="contact-intro">
 				Nulla in velit a metus rhoncus tempus. Nulla congue nulla vel sem varius finibus. Sed ornare sit amet lorem
@@ -1656,6 +1780,9 @@
 			const statCounters = document.querySelectorAll('.hero-stat-value[data-count-to]');
 			const projectCards = document.querySelectorAll('.project-card');
 			const skillCharts = document.querySelectorAll('[data-animate-chart]');
+			const skillCards = document.querySelectorAll('.skills-wrap .skill-card');
+			const contactRevealItems = document.querySelectorAll('.contact-wrap .contact-form .contact-field, .contact-wrap .contact-form .contact-submit');
+			const revealTargets = document.querySelectorAll('[data-scroll-reveal]');
 			const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 			const setCounterFinalValues = function () {
@@ -1717,9 +1844,26 @@
 				}
 			});
 
+			revealTargets.forEach(function (target) {
+				const revealDelay = Number(target.getAttribute('data-reveal-delay')) || 0;
+				target.style.setProperty('--reveal-delay', revealDelay + 'ms');
+			});
+
+			skillCards.forEach(function (card, index) {
+				card.style.setProperty('--skill-reveal-delay', 110 + index * 70 + 'ms');
+			});
+
+			contactRevealItems.forEach(function (item, index) {
+				item.style.setProperty('--contact-reveal-delay', 120 + index * 110 + 'ms');
+			});
+
 			if (prefersReducedMotion || !('IntersectionObserver' in window)) {
 				skillCharts.forEach(function (chart) {
 					chart.classList.add('is-visible');
+				});
+
+				revealTargets.forEach(function (target) {
+					target.classList.add('is-visible');
 				});
 			} else {
 				const chartObserver = new IntersectionObserver(
@@ -1738,6 +1882,24 @@
 
 				skillCharts.forEach(function (chart) {
 					chartObserver.observe(chart);
+				});
+
+				const revealObserver = new IntersectionObserver(
+					function (entries, observer) {
+						entries.forEach(function (entry) {
+							if (!entry.isIntersecting) {
+								return;
+							}
+
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						});
+					},
+					{ threshold: 0.22, rootMargin: '0px 0px -10% 0px' }
+				);
+
+				revealTargets.forEach(function (target) {
+					revealObserver.observe(target);
 				});
 			}
 
