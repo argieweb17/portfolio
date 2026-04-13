@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Portfolio{% endblock %}
-
-{% block javascripts %}{% endblock %}
-
-{% block stylesheets %}
-	<style>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Portfolio</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap');
 
 		:root {
@@ -349,7 +349,7 @@
 
 		.visual-pane {
 			background-color: var(--right-bg);
-			background-image: linear-gradient(180deg, rgba(5, 5, 5, 0.52) 0%, rgba(5, 5, 5, 0.82) 100%), url('{{ asset('images/code.jpg') }}');
+			background-image: linear-gradient(180deg, rgba(5, 5, 5, 0.52) 0%, rgba(5, 5, 5, 0.82) 100%), url('/images/code.jpg');
 			background-size: cover;
 			background-position: center;
 			background-repeat: no-repeat;
@@ -370,7 +370,7 @@
 			left: -72px;
 			width: 320px;
 			background-color: var(--right-bg);
-			background-image: linear-gradient(180deg, rgba(5, 5, 5, 0.52) 0%, rgba(5, 5, 5, 0.82) 100%), url('{{ asset('images/code.jpg') }}');
+			background-image: linear-gradient(180deg, rgba(5, 5, 5, 0.52) 0%, rgba(5, 5, 5, 0.82) 100%), url('/images/code.jpg');
 			background-size: cover;
 			background-position: left center;
 			background-repeat: no-repeat;
@@ -488,7 +488,7 @@
 		.about-section {
 			background: #dbdbdb;
 			color: #111111;
-			padding: 110px 24px 56px;
+			padding: 110px 24px 120px;
 			scroll-margin-top: 16px;
 		}
 
@@ -681,7 +681,7 @@
 		}
 
 		.education-timeline {
-			--line-duration: 3200ms;
+			--line-duration: 3500ms;
 			position: relative;
 			z-index: 1;
 			margin: 44px auto 0;
@@ -701,7 +701,7 @@
 			background: #111111;
 			transform: translateX(-50%) scaleY(0);
 			transform-origin: top center;
-			transition: transform var(--line-duration) linear;
+			transition: transform var(--line-duration) cubic-bezier(0.22, 1, 0.36, 1);
 		}
 
 		.education-timeline.is-line-visible::before {
@@ -724,8 +724,6 @@
 			padding: 14px 14px 13px;
 			text-align: left;
 			box-shadow: none;
-			opacity: 0;
-			transition: opacity 520ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 		}
 
 		.education-item .education-card,
@@ -736,13 +734,11 @@
 		.education-item:nth-child(odd) .education-card {
 			grid-column: 1;
 			justify-self: end;
-			transform: translate3d(-34px, 0, 0);
 		}
 
 		.education-item:nth-child(even) .education-card {
 			grid-column: 3;
 			justify-self: start;
-			transform: translate3d(34px, 0, 0);
 		}
 
 		.education-node {
@@ -762,45 +758,14 @@
 			z-index: 1;
 			opacity: 0;
 			transform: scale(0.56);
-			transition: opacity 0ms linear, transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+			transition: opacity 260ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 			transition-delay: 0ms;
 		}
 
-		.education-node.education-node-logo {
-			width: 54px;
-			height: 54px;
-			background: transparent;
-			border: 0;
-			box-shadow: none;
-			border-radius: 0;
-			padding: 0;
-			overflow: visible;
-		}
-
-		.education-node.education-node-logo img {
-			display: block;
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-			border-radius: 0;
-			transform: none;
-			transform-origin: center;
-		}
-
-		.education-node.node-jhs-logo,
-		.education-node.node-els-logo {
-			width: 68px;
-			height: 68px;
-		}
-
-		.education-node.is-passed {
+		.education-timeline.is-line-visible .education-node {
 			opacity: 1;
 			transform: scale(1);
-		}
-
-		.education-item.is-passed .education-card {
-			opacity: 1;
-			transform: translate3d(0, 0, 0);
+			transition-delay: var(--node-delay, 0ms);
 		}
 
 		.education-node.node-gold {
@@ -1350,7 +1315,7 @@
 
 			.about-section {
 				padding-top: 82px;
-				padding-bottom: 56px;
+				padding-bottom: 90px;
 			}
 
 			.about-grid {
@@ -1557,24 +1522,6 @@
 				box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
 			}
 
-			.education-item .education-node.education-node-logo {
-				width: 42px;
-				height: 42px;
-				margin-top: 2px;
-				border: 0;
-				box-shadow: none;
-			}
-
-			.education-item .education-node.node-jhs-logo,
-			.education-item .education-node.node-els-logo {
-				width: 52px;
-				height: 52px;
-			}
-
-			.education-node.education-node-logo img {
-				transform: none;
-			}
-
 			.education-item .education-card {
 				grid-column: 2 !important;
 				justify-self: stretch;
@@ -1582,12 +1529,9 @@
 				padding: 12px;
 			}
 
-			.education-item:nth-child(odd):not(.is-passed) .education-card {
-				transform: translate3d(-14px, 0, 0);
-			}
-
-			.education-item:nth-child(even):not(.is-passed) .education-card {
-				transform: translate3d(14px, 0, 0);
+			.education-item:nth-child(odd) .education-card,
+			.education-item:nth-child(even) .education-card {
+				transform: translate3d(0, 16px, 0);
 			}
 
 			.education-school {
@@ -1801,21 +1745,16 @@
 				transform: none;
 				transition: none;
 			}
-
-			.education-card {
-				opacity: 1;
-				transform: none;
-				transition: none;
-			}
 		}
 	</style>
-{% endblock %}
 
-{% block body %}
-	<main id="top" class="portfolio-hero">
+        
+                    </head>
+    <body>
+        	<main id="top" class="portfolio-hero">
 		<section class="intro-pane">
-			<img class="brand-mark" src="{{ asset('images/app-logo.svg') }}?v=20260412b" alt="APP logo" loading="eager" decoding="async">
-			<img class="it-logo-mark" src="{{ asset('images/IT LOGO.png') }}" alt="Information Technology Society logo" loading="lazy" decoding="async">
+			<img class="brand-mark" src="/images/app-logo.svg?v=20260412b" alt="APP logo" loading="eager" decoding="async">
+			<img class="it-logo-mark" src="/images/IT LOGO.png" alt="Information Technology Society logo" loading="lazy" decoding="async">
 
 			<div class="intro-copy">
 				<p class="lead"><span class="js-type" data-typing-speed="150" data-typing-delay="180">Hi, I am</span></p>
@@ -1914,7 +1853,7 @@
 				<a href="#contact" class="contact-link">CONTACT ME</a>
 			</nav>
 
-			<img class="portrait" src="{{ asset('images/1321 (1).png') }}" alt="Portrait photo">
+			<img class="portrait" src="/images/1321 (1).png" alt="Portrait photo">
 		</section>
 	</main>
 
@@ -1935,50 +1874,42 @@
 				<div class="education-timeline">
 					<article class="education-item">
 						<div class="education-card">
-							<h4 class="education-school">Negros Oriental State University</h4>
+							<h4 class="education-school">University of Mindanao Tagum College</h4>
 							<p class="education-degree">Bachelor of Science in Information Technology</p>
-							<p class="education-meta">S.Y. 2020 - 2026</p>
-							<p class="education-location">Negros Oriental, Dumaguete City</p>
+							<p class="education-meta">S.Y. 2018 - 2023</p>
+							<p class="education-location">Arellano St., Tagum City</p>
 						</div>
-						<span class="education-node node-gold education-node-logo" aria-hidden="true">
-							<img src="{{ asset('images/norsu1logo (1).png') }}" alt="" loading="lazy" decoding="async">
-						</span>
+						<span class="education-node node-gold" aria-hidden="true">UMTC</span>
 					</article>
 
 					<article class="education-item">
 						<div class="education-card">
-							<h4 class="education-school">Pulangbato National Senior High School</h4>
-							<p class="education-degree">Senior High School - TVL Computer Programming</p>
-							<p class="education-meta">S.Y. 2018 - 2020</p>
-							<p class="education-location">Palinpinon , Valencia Negros Oriental</p>
+							<h4 class="education-school">University of Mindanao Tagum College</h4>
+							<p class="education-degree">Senior High School - STEM</p>
+							<p class="education-meta">S.Y. 2016 - 2018</p>
+							<p class="education-location">Arellano St., Tagum City</p>
 						</div>
-						<span class="education-node node-red education-node-logo" aria-hidden="true">
-							<img src="{{ asset('images/SHS.png') }}" alt="" loading="lazy" decoding="async">
-						</span>
+						<span class="education-node node-red" aria-hidden="true">SHS</span>
 					</article>
 
 					<article class="education-item">
 						<div class="education-card">
-							<h4 class="education-school">San Pedro Academy Recoletos</h4>
-							<p class="education-degree">Junior High School - Computer Services</p>
-							<p class="education-meta">S.Y. 2013 - 2018</p>
-							<p class="education-location">Caidiocan , Valencia Negros Oriental</p>
+							<h4 class="education-school">Atty. Orlando S. Rimando NHS</h4>
+							<p class="education-degree">Junior High School</p>
+							<p class="education-meta">S.Y. 2012 - 2016</p>
+							<p class="education-location">Binuangan, Maco, Davao de Oro</p>
 						</div>
-						<span class="education-node education-node-logo node-jhs-logo" aria-hidden="true">
-							<img src="{{ asset('images/JHS.png') }}" alt="" loading="lazy" decoding="async">
-						</span>
+						<span class="education-node" aria-hidden="true">JHS</span>
 					</article>
 
 					<article class="education-item">
 						<div class="education-card">
-							<h4 class="education-school">Malaunay Elementary School</h4>
+							<h4 class="education-school">Anislagan Elementary School</h4>
 							<p class="education-degree">Elementary School</p>
-							<p class="education-meta">S.Y. 2007 - 2013</p>
-							<p class="education-location">Valencia, Negros Oriental	</p>
+							<p class="education-meta">S.Y. 2006 - 2012</p>
+							<p class="education-location">Anislagan, Maco, Davao de Oro</p>
 						</div>
-						<span class="education-node node-violet education-node-logo node-els-logo" aria-hidden="true">
-							<img src="{{ asset('images/MLE.png') }}" alt="" loading="lazy" decoding="async">
-						</span>
+						<span class="education-node node-violet" aria-hidden="true">ELS</span>
 					</article>
 				</div>
 			</div>
@@ -2106,31 +2037,31 @@
 
 			<div class="projects-grid">
 				<article class="project-card">
-					<img src="{{ asset('images/projects/prod1.png') }}" alt="Project preview 1">
+					<img src="/images/projects/prod1.png" alt="Project preview 1">
 					<div class="project-meta">
 						<h3 class="project-name">SET - SEF Evaluation System</h3>
-						<a class="project-view" href="{{ asset('images/projects/prod1.png') }}" target="_blank" rel="noreferrer">View</a>
+						<a class="project-view" href="/images/projects/prod1.png" target="_blank" rel="noreferrer">View</a>
 					</div>
 				</article>
 
 				<article class="project-card">
-					<img src="{{ asset('images/projects/prod2.png') }}" alt="Water Billing Management System preview">
+					<img src="/images/projects/prod2.png" alt="Water Billing Management System preview">
 					<div class="project-meta">
 						<h3 class="project-name">Water Billing Management System</h3>
-						<a class="project-view" href="{{ asset('images/projects/prod2.png') }}" target="_blank" rel="noreferrer">View</a>
+						<a class="project-view" href="/images/projects/prod2.png" target="_blank" rel="noreferrer">View</a>
 					</div>
 				</article>
 
 				<article class="project-card">
-					<img src="{{ asset('images/projects/prod3.png') }}" alt="CountryAPI & Fetch Data Country preview">
+					<img src="/images/projects/prod3.png" alt="CountryAPI & Fetch Data Country preview">
 					<div class="project-meta">
 						<h3 class="project-name">CountryAPI & Fetch Data Country</h3>
-						<a class="project-view" href="{{ asset('images/projects/prod3.png') }}" target="_blank" rel="noreferrer">View</a>
+						<a class="project-view" href="/images/projects/prod3.png" target="_blank" rel="noreferrer">View</a>
 					</div>
 				</article>
 
 				<article class="project-card">
-					<img src="{{ asset('images/projects/project-4.svg') }}" alt="Project preview 4">
+					<img src="/images/projects/project-4.svg" alt="Project preview 4">
 					<div class="project-meta">
 						<h3 class="project-name">Project 04</h3>
 						<span class="project-view is-disabled" aria-disabled="true">No image</span>
@@ -2138,7 +2069,7 @@
 				</article>
 
 				<article class="project-card">
-					<img src="{{ asset('images/projects/project-5.svg') }}" alt="Project preview 5">
+					<img src="/images/projects/project-5.svg" alt="Project preview 5">
 					<div class="project-meta">
 						<h3 class="project-name">Project 05</h3>
 						<span class="project-view is-disabled" aria-disabled="true">No image</span>
@@ -2146,7 +2077,7 @@
 				</article>
 
 				<article class="project-card">
-					<img src="{{ asset('images/projects/project-6.svg') }}" alt="Project preview 6">
+					<img src="/images/projects/project-6.svg" alt="Project preview 6">
 					<div class="project-meta">
 						<h3 class="project-name">Project 06</h3>
 						<span class="project-view is-disabled" aria-disabled="true">No image</span>
@@ -2228,8 +2159,7 @@
 			const aboutLink = document.getElementById('about-link');
 			const aboutSection = document.getElementById('about');
 			const educationTimeline = document.querySelector('.education-timeline');
-			const educationItems = educationTimeline ? Array.from(educationTimeline.querySelectorAll('.education-item')) : [];
-			const educationNodes = educationTimeline ? Array.from(educationTimeline.querySelectorAll('.education-node')) : [];
+			const educationNodes = educationTimeline ? educationTimeline.querySelectorAll('.education-node') : [];
 			const downloadCsvLink = document.querySelector('.hero-action.hero-action-explore');
 			const typeTargets = document.querySelectorAll('.js-type');
 			const nameTypeTarget = document.querySelector('.intro-copy h1 .js-type-name-last');
@@ -2245,96 +2175,38 @@
 			const parseDurationToMs = function (value) {
 				const raw = (value || '').trim();
 				if (!raw) {
-					return 1800;
+					return 3500;
 				}
 
 				if (raw.endsWith('ms')) {
-					return Number.parseFloat(raw) || 1800;
+					return Number.parseFloat(raw) || 3500;
 				}
 
 				if (raw.endsWith('s')) {
-					return (Number.parseFloat(raw) || 1.8) * 1000;
+					return (Number.parseFloat(raw) || 3.5) * 1000;
 				}
 
-				return Number.parseFloat(raw) || 1800;
+				return Number.parseFloat(raw) || 3500;
 			};
 
-			let educationLineFrameId = null;
-
-			const clearEducationNodeState = function () {
-				educationItems.forEach(function (item) {
-					item.classList.remove('is-passed');
-				});
-
-				educationNodes.forEach(function (node) {
-					node.classList.remove('is-passed');
-				});
-			};
-
-			const updateEducationNodeProgress = function () {
+			const updateEducationNodeDelays = function () {
 				if (!educationTimeline || !educationNodes.length) {
 					return;
 				}
 
+				const timelineStyles = window.getComputedStyle(educationTimeline);
 				const lineStyles = window.getComputedStyle(educationTimeline, '::before');
+				const lineDuration = parseDurationToMs(timelineStyles.getPropertyValue('--line-duration'));
 				const lineTop = Number.parseFloat(lineStyles.top) || 0;
 				const lineBottom = Number.parseFloat(lineStyles.bottom) || 0;
 				const lineLength = Math.max(educationTimeline.clientHeight - lineTop - lineBottom, 1);
-				const timelineRect = educationTimeline.getBoundingClientRect();
 
 				educationNodes.forEach(function (node) {
-					const nodeRect = node.getBoundingClientRect();
-					const nodeCenter = nodeRect.top + nodeRect.height / 2 - timelineRect.top;
+					const nodeCenter = node.offsetTop + node.offsetHeight / 2;
 					const ratio = Math.min(Math.max((nodeCenter - lineTop) / lineLength, 0), 1);
-					node.dataset.lineProgress = String(ratio);
+					const delay = Math.round(ratio * lineDuration);
+					node.style.setProperty('--node-delay', delay + 'ms');
 				});
-			};
-
-			const stopEducationLineProgress = function (resetNodes) {
-				if (educationLineFrameId) {
-					window.cancelAnimationFrame(educationLineFrameId);
-					educationLineFrameId = null;
-				}
-
-				if (resetNodes) {
-					clearEducationNodeState();
-				}
-			};
-
-			const runEducationLineProgress = function () {
-				if (!educationTimeline || !educationNodes.length) {
-					return;
-				}
-
-				stopEducationLineProgress(true);
-
-				const timelineStyles = window.getComputedStyle(educationTimeline);
-				const lineDuration = parseDurationToMs(timelineStyles.getPropertyValue('--line-duration'));
-				const startAt = performance.now();
-
-				const step = function (now) {
-					const progress = Math.min((now - startAt) / lineDuration, 1);
-
-					educationNodes.forEach(function (node) {
-						const threshold = Number(node.dataset.lineProgress || 0);
-						if (progress >= threshold) {
-							node.classList.add('is-passed');
-
-							const ownerItem = node.closest('.education-item');
-							if (ownerItem) {
-								ownerItem.classList.add('is-passed');
-							}
-						}
-					});
-
-					if (progress < 1 && educationTimeline.classList.contains('is-line-visible')) {
-						educationLineFrameId = window.requestAnimationFrame(step);
-					} else {
-						educationLineFrameId = null;
-					}
-				};
-
-				educationLineFrameId = window.requestAnimationFrame(step);
 			};
 
 			const setCounterFinalValues = function () {
@@ -2409,14 +2281,8 @@
 				item.style.setProperty('--contact-reveal-delay', 120 + index * 110 + 'ms');
 			});
 
-			updateEducationNodeProgress();
-			window.addEventListener('resize', function () {
-				updateEducationNodeProgress();
-
-				if (educationTimeline && educationTimeline.classList.contains('is-line-visible') && !prefersReducedMotion) {
-					runEducationLineProgress();
-				}
-			});
+			updateEducationNodeDelays();
+			window.addEventListener('resize', updateEducationNodeDelays);
 
 			if (prefersReducedMotion || !('IntersectionObserver' in window)) {
 				skillCharts.forEach(function (chart) {
@@ -2429,12 +2295,6 @@
 
 				if (educationTimeline) {
 					educationTimeline.classList.add('is-line-visible');
-					educationItems.forEach(function (item) {
-						item.classList.add('is-passed');
-					});
-					educationNodes.forEach(function (node) {
-						node.classList.add('is-passed');
-					});
 				}
 			} else {
 				const chartObserver = new IntersectionObserver(
@@ -2467,16 +2327,10 @@
 					const timelineObserver = new IntersectionObserver(
 						function (entries) {
 							entries.forEach(function (entry) {
-								if (entry.isIntersecting) {
-									entry.target.classList.add('is-line-visible');
-									runEducationLineProgress();
-								} else {
-									entry.target.classList.remove('is-line-visible');
-									stopEducationLineProgress(true);
-								}
+								entry.target.classList.toggle('is-line-visible', entry.isIntersecting);
 							});
 						},
-						{ threshold: 0.08, rootMargin: '0px 0px 0px 0px' }
+						{ threshold: 0.3, rootMargin: '0px 0px -8% 0px' }
 					);
 
 					timelineObserver.observe(educationTimeline);
@@ -2557,4 +2411,5 @@
 			}
 		});
 	</script>
-{% endblock %}
+    </body>
+</html>
