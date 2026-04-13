@@ -173,6 +173,66 @@
 			color: #7a7a7a;
 		}
 
+		.hero-actions {
+			margin-top: 30px;
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			flex-wrap: wrap;
+			opacity: 0;
+			animation: popUpLeft 760ms cubic-bezier(0.22, 1, 0.36, 1) 560ms forwards;
+			will-change: transform, opacity;
+		}
+
+		.hero-stats.is-hidden + .hero-actions {
+			opacity: 0;
+			animation: none;
+		}
+
+		.hero-action {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			border-radius: 999px;
+			font-size: 0.95rem;
+			font-weight: 700;
+			letter-spacing: 0.01em;
+			line-height: 1;
+			padding: 12px 26px;
+			transition: transform 160ms ease, filter 160ms ease;
+		}
+
+		.hero-action:hover {
+			transform: translateY(-2px);
+			filter: brightness(1.04);
+		}
+
+		.hero-action.hero-action-explore {
+			background: linear-gradient(180deg, #3b3b3b 0%, #2b2b2b 100%);
+			color: #f7f7f7;
+			border: 2px solid #1f2c4f;
+			border-radius: 12px;
+			min-width: 110px;
+		}
+
+		.hero-action.hero-action-start {
+			background: linear-gradient(180deg, #06142f 0%, #030d21 100%);
+			color: #f7f7f7;
+			border: 2px solid #1f2c4f;
+			border-radius: 12px;
+			min-width: 176px;
+			justify-content: space-between;
+			gap: 12px;
+			padding: 11px 20px;
+		}
+
+		.hero-action-arrow {
+			font-size: 1.08rem;
+			line-height: 1;
+			font-weight: 700;
+		}
+
 		.scroll-reveal {
 			--slide-offset-x: 0px;
 			opacity: 0;
@@ -1173,6 +1233,30 @@
 				font-size: 0.57rem;
 			}
 
+			.hero-actions {
+				margin-top: 24px;
+				gap: 10px;
+				flex-wrap: nowrap;
+			}
+
+			.hero-action {
+				font-size: 0.8rem;
+				padding: 10px 12px;
+				white-space: nowrap;
+			}
+
+			.hero-action.hero-action-explore {
+				border-radius: 10px;
+				min-width: 116px;
+			}
+
+			.hero-action.hero-action-start {
+				min-width: 162px;
+				padding: 10px 14px;
+				gap: 8px;
+				border-radius: 10px;
+			}
+
 			.scroll-reveal[data-scroll-reveal="left"] {
 				--slide-offset-x: -46px;
 			}
@@ -1456,6 +1540,14 @@
 						<p class="hero-stat-value" data-count-to="445">445+</p>
 						<span class="hero-stat-label">Reviews</span>
 					</div>
+				</div>
+
+				<div class="hero-actions" aria-label="Primary actions">
+					<a class="hero-action hero-action-explore" href="#about">Download CSV</a>
+					<a class="hero-action hero-action-start" href="#contact">
+						<span>Let&#39;s get started</span>
+						<span class="hero-action-arrow" aria-hidden="true">&gt;</span>
+					</a>
 				</div>
 			</div>
 		</section>
@@ -1782,6 +1874,7 @@
 		document.addEventListener('DOMContentLoaded', function () {
 			const aboutLink = document.getElementById('about-link');
 			const aboutSection = document.getElementById('about');
+			const downloadCsvLink = document.querySelector('.hero-action.hero-action-explore');
 			const typeTargets = document.querySelectorAll('.js-type');
 			const nameTypeTarget = document.querySelector('.intro-copy h1 .js-type-name-last');
 			const heroStats = document.querySelector('.hero-stats');
@@ -1950,6 +2043,12 @@
 
 			if (!nameTypeTarget) {
 				runCounterAnimation();
+			}
+
+			if (downloadCsvLink) {
+				downloadCsvLink.addEventListener('click', function (event) {
+					event.preventDefault();
+				});
 			}
 
 			if (!aboutLink || !aboutSection) {
